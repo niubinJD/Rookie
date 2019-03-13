@@ -51,4 +51,10 @@ public class TestServiceTest {
     public void removeAll() {
         service.removeAll();
     }
+
+    @Test
+    public void doTaskOne() throws InterruptedException {
+        service.doTaskOne();
+        service.doTaskTwo();
+    }
 }

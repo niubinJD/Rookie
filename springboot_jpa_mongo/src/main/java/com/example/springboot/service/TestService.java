@@ -5,6 +5,7 @@ import com.example.springboot.domain.repository.TestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,5 +38,22 @@ public class TestService {
     @Transactional
     public void removeAll(){
         repository.deleteAll();
+    }
+
+    /**
+     * 异步调用
+     * @throws InterruptedException
+     */
+    @Async
+    public void doTaskOne() throws InterruptedException {
+        long l = System.currentTimeMillis();
+        Thread.sleep(2000);
+        System.out.println(System.currentTimeMillis() - l);
+    }
+    @Async
+    public void doTaskTwo() throws InterruptedException {
+        long l = System.currentTimeMillis();
+        Thread.sleep(3000);
+        System.out.println(System.currentTimeMillis() - l);
     }
 }

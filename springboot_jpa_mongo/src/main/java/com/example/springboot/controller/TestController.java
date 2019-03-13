@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-//@RequestMapping("/test")
 public class TestController {
     @Autowired
     ConfigBean configBean;
@@ -40,5 +39,11 @@ public class TestController {
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     public ReturnData getTestByName(@RequestParam(required=false, defaultValue="小明") String name) {
         return  new ReturnData(service.findOne(name), 200);
+    }
+
+    @RequestMapping(value = "/errorText", method = RequestMethod.GET)
+    public ReturnData testExecption() throws Exception {
+        throw new Exception("全局异常处理");
+//        return  new ReturnData(null, 200);
     }
 }
